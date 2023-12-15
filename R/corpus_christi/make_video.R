@@ -3,7 +3,7 @@ library(magick)
 library(glue)
 library(av)
 
-dir <- "temp/boston"
+dir <- "temp/corpus_christi"
 this_vec <- list.files(dir)
 max <- this_vec |> 
   str_remove("\\.png") |> 
@@ -44,7 +44,7 @@ img |>
 # final frame
 final <- glue("{dir}/final.png")
 img <- image_read(max_f)
-cap <- "Boston, Massachusetts"
+cap <- "Corpus Christi, Texas"
 img |> 
   image_annotate(text = cap,
                  gravity = "center",
@@ -65,18 +65,8 @@ these <- these[which(!str_detect(these, "first|second|final|0000"))]
 av_encode_video(input = rep(first, 200), output = glue("videos/{map}/intro.mp4"), 
                 vfilter = "setpts=0.1*PTS")
 
-av_encode_video(input = these[1:10797], output = glue("videos/{map}/main1.mp4"),
-                vfilter = "setpts=0.025*PTS")
-av_encode_video(input = these[10950:20000], output = glue("videos/{map}/main2.mp4"),
-                vfilter = "setpts=0.025*PTS")
-av_encode_video(input = these[20001:30000], output = glue("videos/{map}/main3.mp4"),
-                vfilter = "setpts=0.025*PTS")
-av_encode_video(input = these[30001:40000], output = glue("videos/{map}/main4.mp4"),
-                vfilter = "setpts=0.025*PTS")
-dav_encode_video(input = these[40001:50000], output = glue("videos/{map}/main5.mp4"),
-                vfilter = "setpts=0.025*PTS")
-av_encode_video(input = these[50001:length(these)], output = glue("videos/{map}/main6.mp4"),
-                vfilter = "setpts=0.025*PTS")
+av_encode_video(input = these, output = glue("videos/{map}/main.mp4"),
+                vfilter = "setpts=0.1*PTS")
 
 av_encode_video(input = rep(final, 400), output = glue("videos/{map}/final.mp4"),
                 vfilter = "setpts=0.1*PTS")
@@ -84,13 +74,7 @@ av_encode_video(input = rep(final, 400), output = glue("videos/{map}/final.mp4")
 file.create("this_text.txt")
 
 glue("file 'videos/{map}/intro.mp4'\n",
-     "file 'videos/{map}/main1.mp4'\n",
-     "file 'videos/{map}/main2.mp4'\n",
-     "file 'videos/{map}/main3.mp4'\n",
-     "file 'videos/{map}/main4.mp4'\n",
-     "file 'videos/{map}/main5.mp4'\n",
-     "file 'videos/{map}/main6.mp4'\n",
-     
+     "file 'videos/{map}/main.mp4'\n",
      "file 'videos/{map}/final.mp4'") |> 
   write_lines(file = "this_text.txt")
 

@@ -129,10 +129,10 @@ tf <- glue("temp/{map}/{ind}.png")
 
 this_p <- this_place |> 
   ggplot() +
-  geom_sf(fill = alpha("white", .5), 
+  geom_sf(fill = alpha("#E4C601", .5), 
           color = "#E4C601") +
   theme_void()
-# this_p
+this_p
 
 
 ggsave(filename = tf, plot = this_p, bg = "#092E59", 

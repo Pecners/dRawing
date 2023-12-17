@@ -44,7 +44,7 @@ img |>
 # final frame
 final <- glue("{dir}/final.png")
 img <- image_read(max_f)
-cap <- "Corpus Christi, Texas"
+cap <- "Denver, Colorado"
 img |> 
   image_annotate(text = cap,
                  gravity = "center",
@@ -67,10 +67,6 @@ av_encode_video(input = rep(first, 200), output = glue("videos/{map}/intro.mp4")
 
 av_encode_video(input = these, output = glue("videos/{map}/main.mp4"),
                 vfilter = "setpts=0.1*PTS")
-
-av_encode_video(input = these[575:length(these)], output = glue("videos/{map}/main1.mp4"),
-                vfilter = "setpts=0.1*PTS")
-
 
 av_encode_video(input = rep(final, 400), output = glue("videos/{map}/final.mp4"),
                 vfilter = "setpts=0.1*PTS")

@@ -1,3 +1,3 @@
-file 'videos/corpus_christi/intro.mp4'
-file 'videos/corpus_christi/main.mp4'
-file 'videos/corpus_christi/final.mp4'
+file 'videos/denver/intro.mp4'
+file 'videos/denver/main.mp4'
+file 'videos/denver/final.mp4'
